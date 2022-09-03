@@ -38,10 +38,24 @@ const Ranking = () => {
   // }
   // getUsergit();
 
-  //랭킹데이터 객체
-  // const RankingData = (props) => {
-  //     const Ranking = getUsergit.map(())
-  // };
+  // 랭킹데이터 객체
+  const RankingData = ({getUsergit}) => {
+      
+  };
+
+  // 랭킹컴포넌트 컬러
+  const tenColor = [
+    "#190025",
+    "#2A1039",
+    "#3C285C",
+    "#4D3F7F",
+    "#5D57A2",
+    "#8060DC",
+    "#B27BFF",
+    "#C99DFF",
+    "#E68DFF",
+    "#F5D7FF",
+  ]
 
   return (
     <RankingLayout>
@@ -79,3 +93,20 @@ const RankingLayout = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+
+
+response?.data?.map((d, index) => {
+  return <mappingWrapper props={index}>
+
+    <span>d.index +1</span>
+    <span>d.name</span>
+    <span>d.</span>
+
+  </mappingWrapper>
+})
+
+const mappingWrapper = styled.div`
+  background-color: tenColor[index];
+
+`
