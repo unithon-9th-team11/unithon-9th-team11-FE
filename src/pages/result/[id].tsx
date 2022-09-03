@@ -4,6 +4,11 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { UserResultText } from '@RootComponents/UserResultText';
 
+import dynamic from 'next/dynamic';
+
+const UrlCopyButtonCSR = dynamic(import('@RootComponents/UrlCopyButton'), {
+  ssr: false,
+});
 const getEmojiByScore = (score: number) => {
   if (score >= 800) return '🥳';
   if (score >= 600) return '🤗';
@@ -33,7 +38,9 @@ const ResultPage = () => {
         <UserResultCard nickname="Jiwon-Jeong99" />
       </div>
 
-      <div></div>
+      <div>
+        <UrlCopyButtonCSR />
+      </div>
     </StyledWrapper>
   );
 };
@@ -102,7 +109,7 @@ const StyledWrapper = styled.div`
   }
 
   .result-cards-wrapper {
-    margin-top: 18px;
+    margin: 18px 0;
     display: flex;
     align-items: center;
     justify-content: center;

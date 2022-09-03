@@ -9,17 +9,18 @@ import Link from 'next/link';
 import { FaYinYang } from 'react-icons/fa';
 
 const Header = () => {
-  // TODO 로그인 상태인지 확인해야 함
   const isLoggedIn = true;
   const navItems = isLoggedIn ? loginNavItems : logOutNavItems;
 
   return (
     <StyledWrapper>
       <h1 className="header-title">
-        <div className="app-logo">
-          <FaYinYang />
-          <span className="logo-name">깃주팔자</span>
-        </div>
+        <Link href="/">
+          <div className="app-logo">
+            <FaYinYang />
+            <span className="logo-name">깃주팔자</span>
+          </div>
+        </Link>
       </h1>
       <ul className="nav-wrapper">
         {navItems.map((item, index) => {
@@ -44,9 +45,10 @@ const StyledWrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   .header-title {
     margin-left: 60px;
-
+    cursor: pointer;
     .app-logo {
       height: 100%;
       display: flex;
