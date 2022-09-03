@@ -3,10 +3,11 @@ import { UserResultCard } from '@RootComponents/UserResultCard';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { UserResultText } from '@RootComponents/UserResultText';
-
+import { ImSpinner2 } from 'react-icons/im';
 import dynamic from 'next/dynamic';
 import AuthAPI from 'pages/root.api/api';
-import { Skeleton } from 'antd';
+import { Skeleton, Spin } from 'antd';
+import { FaSpinner } from 'react-icons/fa';
 
 export type PersonalData = {
   githubId: string;
@@ -66,8 +67,20 @@ const ResultPage = () => {
   // const score = getRandomInt(0, 1000);
   const score = data?.chemyScore ?? 500;
 
-  if (loading) return <Skeleton />;
-  // if (!data) return null;
+  if (loading)
+    return (
+      <div
+        style={{
+          display: 'flex',
+          width: '100vw',
+          height: '100vh',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Spin size="large" />
+      </div>
+    );
   return (
     <StyledWrapper>
       <h3 className="result-message">
@@ -102,6 +115,13 @@ const StyledWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
+  .spinner {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+  }
   .user-names {
     position: relative;
     display: flex;

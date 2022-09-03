@@ -149,6 +149,7 @@ const PageMain: NextPage = () => {
               !initialValue?.yourname ||
               mutation.isLoading
             }
+            loading={mutation.isLoading}
             htmlType="submit"
             ref={btnRef}
           >

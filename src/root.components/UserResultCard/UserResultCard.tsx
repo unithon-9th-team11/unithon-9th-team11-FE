@@ -10,14 +10,21 @@ type Props = {
 const UserResultCard = ({ data }: Props) => {
   return (
     <StyledWrapper>
-      <img
-        // onError={"/image/octocat.png"}
-        className="profile-img"
-        src={`https://github.com/${data?.githubId}.png`}
-        width={150}
-        height={150}
-      />
-      <span className="user-name">@{data?.githubId ?? ''}</span>
+      <a
+        href={`https://github.com/${data?.githubId}`}
+        target="_blank"
+        className="profile-wrapper"
+        rel="noreferrer"
+      >
+        <img
+          // onError={"/image/octocat.png"}
+          className="profile-img"
+          src={`https://github.com/${data?.githubId}.png`}
+          width={150}
+          height={150}
+        />
+        <span className="user-name">@{data?.githubId ?? ''}</span>
+      </a>
       <ResultInfoTag labelText="🌟 스타 수" amount={data?.totalStar ?? ''} />
       <ResultInfoTag labelText="✍🏻 커밋 수" amount={data?.totalCommit ?? ''} />
       <ResultInfoTag
@@ -37,6 +44,12 @@ const StyledWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
+  .profile-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
   .profile-img {
     border-radius: 50%;
     border: 4px solid transparent;

@@ -57,7 +57,7 @@ const StyledWrapper = styled.span`
   justify-content: center;
   text-align: center;
   color: #264083;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 700;
   line-height: 1.4;
 `;
