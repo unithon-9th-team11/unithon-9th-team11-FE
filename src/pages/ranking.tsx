@@ -165,7 +165,7 @@ const RankBox = styled.div<{ backgroundColor: string }>`
   justify-content: space-around;
   align-items: center;
   border-radius: 20px;
-  margin: 20px;
+  margin: 15px auto;
   .span {
     display: flex;
   }
