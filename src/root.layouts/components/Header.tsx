@@ -55,7 +55,7 @@ const StyledWrapper = styled.header`
     }
 
     display: flex;
-    /* justify-content: flex-start; */
+    justify-content: flex-start;
     align-items: center;
     height: 100%;
 

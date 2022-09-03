@@ -5,11 +5,9 @@ const Footer = () => {
   return (
     <StyledWrapper className="css-flex-center">
       <p className="footer-message css-flex-center">
-        with wanted pre-onboarding challenge FE-1
+        @2022 깃주팔자
         <br />
-        @ghoon99
-        <br />
-        @2022 ToDo App.
+        @Unithon 9th team 11
       </p>
     </StyledWrapper>
   );
@@ -19,14 +17,15 @@ export default Footer;
 
 const StyledWrapper = styled.footer`
   width: 100%;
-  height: 6rem;
+  height: 30px;
+  padding: 30px 0;
   border-top: 1px solid #f2f2f2;
 
   .footer-message {
     height: 100%;
     line-height: 1.2;
     font-weight: 500;
-    font-size: 1.2rem;
+    font-size: 14px;
     text-align: center;
     color: #999999;
   }
