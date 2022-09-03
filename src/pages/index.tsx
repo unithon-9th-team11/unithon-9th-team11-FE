@@ -34,8 +34,18 @@ const PageMain: NextPage = () => {
 export default PageMain;
 
 const StyledWrapper = styled.div`
+  background-image: url('/image/mask_group.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   .main-title {
-    margin-top: 100px;
     font-size: 80px;
     font-weight: 600;
     display: flex;
@@ -48,11 +58,12 @@ const StyledWrapper = styled.div`
   }
 
   .group-wrapper {
-    margin-top: 120px;
+    margin: 120px 0 100px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     .input-wrapper {
       width: 100%;
       display: flex;
@@ -64,6 +75,7 @@ const StyledWrapper = styled.div`
         font-size: 28px;
         font-weight: 700;
         margin-right: 14px;
+        color: white;
       }
 
       .input {
@@ -72,6 +84,7 @@ const StyledWrapper = styled.div`
         border-radius: 100px;
         padding: 0 40px;
         font-size: 20px;
+        text-align: center;
 
         &::placeholder {
           text-align: center;
@@ -84,7 +97,6 @@ const StyledWrapper = styled.div`
       margin-top: 20px;
       font-size: 24px;
       display: flex;
-      width: 180px;
       font-weight: 700;
       justify-items: center;
       justify-content: center;
@@ -93,6 +105,8 @@ const StyledWrapper = styled.div`
       color: white;
       padding: 30px;
       border-radius: 100px;
+      width: 100%;
+      border: 0;
     }
   }
 `;
