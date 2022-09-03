@@ -1,3 +1,4 @@
+import AppLayout from '@RootLayouts/screen/AppLayout';
 import {
   Hydrate,
   QueryClient,
@@ -6,6 +7,7 @@ import {
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import GlobalStyles from '@RootStyles/GlobalStyles';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,10 +27,20 @@ const MyApp = ({ Component, pageProps }: AppProps<{}>) => {
         <title>TODO APP</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
+
+      <GlobalStyles />
+      <QueryClientProvider client={queryClient}>
+        {process.env.NODE_ENV !== 'production' && (
+          <ReactQueryDevtools initialIsOpen={false} />
+        )}
+        <Hydrate state={pageProps.dehydratedState}>
+          <AppLayout>
+            <Component {...pageProps} />
+          </AppLayout>
+        </Hydrate>
+      </QueryClientProvider>
     </>
   );
 };
 
 export default MyApp;
-
-MyApp.getServerSideProps = async () => {};
