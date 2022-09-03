@@ -4,7 +4,8 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 type Usergit = {
-  name: string;
+  name1: string;
+  name2: string;
   score: number;
 };
 
