@@ -5,6 +5,8 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    "strictNullChecks": true,
+    "noImplicitAny": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -13,8 +15,20 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "baseUrl": "./src",
+
+    "paths": {
+      // Roots
+      "@RootComponents/*": ["root.components/*"],
+      "@RootFeatures/*": ["root.features/*"],
+      "@RootHooks/*": ["root.hooks/*"],
+      "@RootLayouts/*": ["root.layouts/*"],
+      "@RootLibs/*": ["root.libs/*"],
+      "@RootStyles/*": ["root.styles/*"]
+    }
   },
+
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }
