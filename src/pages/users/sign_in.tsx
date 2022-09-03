@@ -69,6 +69,12 @@ const SignIn = () => {
           </Button>
         </Form>
       </Formik>
+
+      <div className="link-wrapper">
+        <a href="#" className="link">
+          회원가입
+        </a>
+      </div>
     </UsersLayout>
   );
 };

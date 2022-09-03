@@ -20,7 +20,7 @@ const StyledWrapper = styled.div`
 
   .input-style {
     margin: 10px 0;
-    height: 45px;
+    height: 60px;
     border-radius: 14px;
   }
 
@@ -32,22 +32,35 @@ const StyledWrapper = styled.div`
     align-items: center;
     color: #fff;
     font-weight: bold;
-    height: 45px;
+    height: 60px;
     border-radius: 14px;
     margin-top: 15px;
   }
 
   .content-style {
-    max-width: 500px;
+    max-width: 450px;
     width: 100%;
     margin-right: auto;
     margin-left: auto;
   }
 
   .validation-msg {
-    font-size: 14px;
+    font-size: 12px;
     color: red;
-    margin-top: 8px;
     margin-bottom: 8px;
+  }
+
+  .link-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+  }
+
+  .link {
+    font-size: 14px;
+    color: #f21361;
+    text-decoration: underline;
   }
 `;
