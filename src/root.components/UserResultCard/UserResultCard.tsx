@@ -1,23 +1,29 @@
+import { getRandomInt, PersonalData } from 'pages/result/[id]';
 import React from 'react';
 import styled from 'styled-components';
 import ResultInfoTag from './ResultInfoTag';
 
 type Props = {
-  nickname: string;
+  data: PersonalData;
 };
-const UserResultCard = ({ nickname }: Props) => {
+
+const UserResultCard = ({ data }: Props) => {
   return (
     <StyledWrapper>
       <img
+        // onError={"/image/octocat.png"}
         className="profile-img"
-        src={`https://github.com/${nickname}.png`}
+        src={`https://github.com/${data?.githubId}.png`}
         width={150}
         height={150}
       />
-      <span className="user-name">@{nickname}</span>
-      <ResultInfoTag labelText="🌟 스타 수" amount={23} />
-      <ResultInfoTag labelText="✍🏻 커밋 수" amount={99} />
-      <ResultInfoTag labelText="👩‍👩‍👧‍👦 조직 수" amount={2422} />
+      <span className="user-name">@{data?.githubId ?? ''}</span>
+      <ResultInfoTag labelText="🌟 스타 수" amount={data?.totalStar ?? ''} />
+      <ResultInfoTag labelText="✍🏻 커밋 수" amount={data?.totalCommit ?? ''} />
+      <ResultInfoTag
+        labelText="👩‍👩‍👧‍👦 조직 수"
+        amount={data?.totalOrganization ?? ''}
+      />
     </StyledWrapper>
   );
 };

@@ -1,25 +1,73 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { UserResultCard } from '@RootComponents/UserResultCard';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { UserResultText } from '@RootComponents/UserResultText';
 
 import dynamic from 'next/dynamic';
+import AuthAPI from 'pages/root.api/api';
+import { Skeleton } from 'antd';
+
+export type PersonalData = {
+  githubId: string;
+  totalStar: number;
+  totalCommit: number;
+  totalOrganization: number;
+};
+
+type Response = {
+  chemyScore: number;
+  firstPersonalData: PersonalData;
+  secondPersonalData: PersonalData;
+};
+
+// firstPersonalData: {githubId: "ghoon99", totalStar: 2, totalCommit: 165, totalOrganization: 12}
+// githubId: "ghoon99"
+// totalCommit: 165
+// totalOrganization: 12
+// totalStar: 2
+// secondPersonalData: {githubId: "210-reverof", totalStar: 1, totalCommit: 395, totalOrganization: 12}
+// githubId: "210-reverof"
+// totalCommit: 395
+// totalOrganization: 12
+// totalStar: 1
 
 const UrlCopyButtonCSR = dynamic(import('@RootComponents/UrlCopyButton'), {
   ssr: false,
 });
+
 const getEmojiByScore = (score: number) => {
   if (score >= 800) return '🥳';
   if (score >= 600) return '🤗';
   if (score >= 400) return '🧐';
   return '😵‍💫';
 };
+
+export const getRandomInt = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
 const ResultPage = () => {
   const router = useRouter();
-  console.log(router.query);
-  const score = 600;
+  const [data, setData] = useState<null | Response>(null);
+  const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    const getData = async () => {
+      setLoading(true);
+      const res = await AuthAPI.get(`/api/v1/chemy/${router.query.id}`);
+      setData(res.data);
+      setLoading(false);
+    };
+
+    getData();
+  }, [router]);
+
+  // const score = getRandomInt(0, 1000);
+  const score = data?.chemyScore ?? 500;
+
+  if (loading) return <Skeleton />;
+  // if (!data) return null;
   return (
     <StyledWrapper>
       <h3 className="result-message">
@@ -28,14 +76,14 @@ const ResultPage = () => {
           {score}점{getEmojiByScore(score)}
         </span>
       </h3>
-      <p>상위 {99.9}%에 해당되는 순위네요!</p>
+      <p>상위 {Math.floor(score / 13)}%에 해당되는 순위네요!</p>
 
       <div className="result-cards-wrapper">
-        <UserResultCard nickname="k" />
+        <UserResultCard data={data?.firstPersonalData!} />
         <div className="report-card">
           <UserResultText score={score} />
         </div>
-        <UserResultCard nickname="Jiwon-Jeong99" />
+        <UserResultCard data={data?.secondPersonalData!} />
       </div>
 
       <div>

@@ -1,9 +1,21 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
+import { useRouter } from 'next/router';
 
 const Loading = () => {
   const [imgWidth, setImgWidth] = useState(600);
+  const router = useRouter();
+  console.log('query', router.query.id);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      router.push(`/result/${router.query.id}`);
+    }, 14500);
+
+    // const interval = setInterval
+    return () => clearTimeout(timeout);
+  }, [router]);
 
   useEffect(() => {
     const interval = setInterval(() => {
