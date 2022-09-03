@@ -33,9 +33,8 @@ const StyledWrapper = styled.div`
 
   .profile-img {
     border-radius: 50%;
-
     border: 4px solid transparent;
-    border-radius: 50%;
+
     background-image: linear-gradient(#fff, #fff),
       linear-gradient(to right, red 0%, #4d4ad5 100%);
     background-origin: border-box;
