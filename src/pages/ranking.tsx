@@ -1,8 +1,16 @@
-import React from 'react'
+import UsersLayout from '@RootComponents/UsersLayout';
+import Link from 'next/link';
+
+export interface usergit {
+    name : string;
+}
 
 const Ranking = () => {
+    const [usergit, setuserGie] = 
   return (
-    <div>ranking</div>
+    <UsersLayout>
+        
+    </UsersLayout>
   )
 }
 
