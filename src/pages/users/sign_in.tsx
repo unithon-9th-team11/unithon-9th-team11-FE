@@ -36,7 +36,6 @@ const SignIn = () => {
                 <Input
                   {...field}
                   className="input-style"
-                  type="email"
                   autoComplete="false"
                   placeholder="아이디"
                 />
@@ -72,8 +71,8 @@ const SignIn = () => {
       </Formik>
 
       <div className="link-wrapper">
-        <Link href="/users/sign_up" className="link">
-          회원가입
+        <Link href="/users/sign_up">
+          <a className="link">회원가입</a>
         </Link>
       </div>
     </UsersLayout>
