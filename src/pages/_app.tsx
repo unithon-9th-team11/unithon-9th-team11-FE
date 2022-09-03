@@ -24,7 +24,7 @@ const MyApp = ({ Component, pageProps }: AppProps<{}>) => {
   return (
     <>
       <Head>
-        <title>TODO APP</title>
+        <title>깃주팔자</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 

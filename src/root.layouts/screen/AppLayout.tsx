@@ -15,9 +15,8 @@ const AppLayout = ({ children }: PropsWithChildren<{}>) => {
 export default AppLayout;
 
 const StyledWrapper = styled.main`
-  min-height: 85vh;
+  min-height: 100vh;
   width: 1200px;
   margin: 0 auto;
-  /* padding: 0 4rem; */
   font-size: 1.6rem;
 `;
