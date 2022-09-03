@@ -4,6 +4,7 @@ import { Button, Input } from 'antd';
 import * as Yup from 'yup';
 import UsersLayout from '@RootComponents/UsersLayout';
 import Link from 'next/link';
+import { postSignIn } from 'pages/root.api/api';
 
 type SignInValue = {
   userId: string;
@@ -27,6 +28,12 @@ const SignIn = () => {
         onSubmit={(values: SignInValue) => {
           console.log(values.userId);
           console.log(values.userPw);
+
+          postSignIn({ userId: values.userId, userPw: values.userPw }).then(
+            (response) => {
+              console.log(response);
+            }
+          );
         }}
       >
         <Form>
