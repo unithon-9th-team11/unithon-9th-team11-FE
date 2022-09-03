@@ -31,5 +31,8 @@ style: 게시판 헤더 줄 간격 스타일을 수정합니다.
 - 상용, 테스트 서버 나눠서 개발시
   - develop 은 테스트 서버가 된다.
   - 상용서버에 배포시 `develop ⇒ main` 으로 바로 PR, 혹은 반영할 내용만 `체리픽 커밋 후 PR`
+  
+  
+  ㅇ
 
 ### [공통폴더 구조](https://confirmed-textbook-87e.notion.site/f5beeca4a66d4f609d96bca15fb28086)
