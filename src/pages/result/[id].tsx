@@ -2,26 +2,44 @@ import React from 'react';
 import { UserResultCard } from '@RootComponents/UserResultCard';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import { UserResultText } from '@RootComponents/UserResultText';
 
+import dynamic from 'next/dynamic';
+
+const UrlCopyButtonCSR = dynamic(import('@RootComponents/UrlCopyButton'), {
+  ssr: false,
+});
+const getEmojiByScore = (score: number) => {
+  if (score >= 800) return '🥳';
+  if (score >= 600) return '🤗';
+  if (score >= 400) return '🧐';
+  return '😵‍💫';
+};
 const ResultPage = () => {
   const router = useRouter();
   console.log(router.query);
+  const score = 600;
+
   return (
     <StyledWrapper>
-      <div className="user-names">
-        <span>{'asp32r98'}</span>
-        <img src="/image/pngwing.png" width={90} height={90} />
-        <span>{'asp32r2298'}</span>
-      </div>
       <h3 className="result-message">
-        두분의 궁합은 <span>{819}점</span> {'🥳'}
+        두분의 궁합은{' '}
+        <span>
+          {score}점{getEmojiByScore(score)}
+        </span>
       </h3>
       <p>상위 {99.9}%에 해당되는 순위네요!</p>
 
       <div className="result-cards-wrapper">
+        <UserResultCard nickname="k" />
+        <div className="report-card">
+          <UserResultText score={score} />
+        </div>
         <UserResultCard nickname="Jiwon-Jeong99" />
-        <div className="report-card"></div>
-        <UserResultCard nickname="Jiwon-Jeong99" />
+      </div>
+
+      <div>
+        <UrlCopyButtonCSR />
       </div>
     </StyledWrapper>
   );
@@ -30,7 +48,7 @@ const ResultPage = () => {
 export default ResultPage;
 
 const StyledWrapper = styled.div`
-  /* width: 200px; */
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,15 +109,25 @@ const StyledWrapper = styled.div`
   }
 
   .result-cards-wrapper {
-    margin-top: 18px;
+    margin: 18px 0;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   .report-card {
-    height: 450px;
+    height: 300px;
     margin: 0 36px;
     width: 400px;
-    background-color: #faf6fd;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    background-image: linear-gradient(#fff, #fff),
+      linear-gradient(to right, #bca3ea 0%, #8593d7 100%);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
   }
 `;
