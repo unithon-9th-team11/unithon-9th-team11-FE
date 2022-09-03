@@ -16,7 +16,7 @@ export default AppLayout;
 
 const StyledWrapper = styled.main`
   min-height: 100vh;
-  width: 1200px;
+  width: 100%;
   margin: 0 auto;
   font-size: 1.6rem;
 `;
