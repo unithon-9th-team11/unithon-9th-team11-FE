@@ -9,10 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.2.3",
+    "@tanstack/react-query-devtools": "^4.2.3",
+    "antd": "^4.22.8",
     "axios": "^0.27.2",
+    "date-fns": "^2.29.2",
+    "formik": "^2.2.9",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.4.0",
     "styled-components": "^5.3.5",
     "styled-reset": "^4.4.2"
   },
