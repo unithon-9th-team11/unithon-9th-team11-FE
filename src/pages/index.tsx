@@ -41,7 +41,11 @@ const FadeInUp = ({ isVisible, children }) => {
     from: { opacity: 0, y: -50 },
   });
 
-  return <animated.div style={styles}>{children}</animated.div>;
+  return (
+    <animated.div style={styles} className="fadeup-style">
+      {children}
+    </animated.div>
+  );
 };
 
 const PageMain: NextPage = () => {
@@ -69,7 +73,7 @@ const PageMain: NextPage = () => {
           <div className="input-wrapper">
             <label className="label">나와</label>
             <Input
-              placeholder="https://github.com/italsekf"
+              placeholder="당신의 github 아이디를 입력해주세요"
               className="input"
             />
           </div>
@@ -77,7 +81,7 @@ const PageMain: NextPage = () => {
           <div className="input-wrapper">
             <label className="label">너의</label>
             <Input
-              placeholder="https://github.com/italsekf"
+              placeholder="상대방의 github 아이디를 입력해주세요"
               className="input"
             />
           </div>
@@ -156,12 +160,18 @@ const StyledWrapper = styled.div`
         padding: 0 40px;
         font-size: 20px;
         text-align: center;
+        box-shadow: 8px 8px 20px darkgrey;
+        border: 0;
 
         &::placeholder {
           text-align: center;
           color: #9a9a9a;
         }
       }
+    }
+
+    .fadeup-style {
+      width: 100%;
     }
 
     .btn-result {
