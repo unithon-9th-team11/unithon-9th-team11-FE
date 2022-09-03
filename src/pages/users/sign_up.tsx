@@ -12,9 +12,7 @@ type SignUpValue = {
 
 const SignIn = () => {
   const validationSchema = Yup.object().shape({
-    userId: Yup.string()
-      .email('이메일 형식으로 입력해주세요.')
-      .required('이메일을 입력해주세요.'),
+    userId: Yup.string().required('아이디를 입력해주세요'),
     userPw: Yup.string().required('비밀번호를 입력해주세요.'),
     userPwConfirm: Yup.string().oneOf(
       [Yup.ref('userPw'), null],
@@ -44,8 +42,9 @@ const SignIn = () => {
                 <Input
                   {...field}
                   className="input-style"
-                  type="email"
+                  type="text"
                   autoComplete="false"
+                  placeholder="아이디"
                 />
               );
             }}
@@ -62,6 +61,7 @@ const SignIn = () => {
                   {...field}
                   className="input-style"
                   autoComplete="false"
+                  placeholder="비밀번호"
                 />
               );
             }}
@@ -78,6 +78,7 @@ const SignIn = () => {
                   {...field}
                   className="input-style"
                   autoComplete="false"
+                  placeholder="비밀번호 확인"
                 />
               );
             }}
@@ -94,7 +95,7 @@ const SignIn = () => {
       </Formik>
 
       <div className="link-wrapper">
-        <a href="#" className="link">
+        <a href="/users/sign_in" className="link">
           로그인 페이지로 가기
         </a>
       </div>
