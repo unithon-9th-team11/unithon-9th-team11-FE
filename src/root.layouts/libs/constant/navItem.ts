@@ -12,6 +12,6 @@ export const logOutNavItems: navItemType[] = [
 
 export const loginNavItems: navItemType[] = [
   { title: '궁합보기', path: '/' },
-  { title: '마이랭킹', path: '/' },
+  { title: '마이랭킹', path: '/ranking' },
   { title: '로그아웃', path: '/' },
 ];
