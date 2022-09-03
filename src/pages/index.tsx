@@ -3,6 +3,7 @@ import { NextPage } from 'next';
 import { FaYinYang } from 'react-icons/fa';
 import styled from 'styled-components';
 import { animated, useSpring } from '@react-spring/web';
+import { useState } from 'react';
 
 const FadeIn = ({ isVisible, children }) => {
   const styles = useSpring({
@@ -49,6 +50,15 @@ const FadeInUp = ({ isVisible, children }) => {
 };
 
 const PageMain: NextPage = () => {
+  const [initialValue, setInitialValue] = useState({
+    myname: '',
+    yourname: '',
+  });
+
+  const handleSubmit = () => {
+    console.log(initialValue);
+  };
+
   return (
     <StyledWrapper>
       <FadeIn isVisible={true}>
@@ -68,13 +78,16 @@ const PageMain: NextPage = () => {
         </div>
       </FadeInRight>
 
-      <div className="group-wrapper">
+      <form className="group-wrapper" onSubmit={(e) => e.preventDefault()}>
         <FadeInLeft isVisible={true}>
           <div className="input-wrapper">
             <label className="label">나와</label>
             <Input
               placeholder="당신의 github 아이디를 입력해주세요"
               className="input"
+              onChange={(e) => {
+                setInitialValue({ ...initialValue, myname: e.target.value });
+              }}
             />
           </div>
 
@@ -83,14 +96,26 @@ const PageMain: NextPage = () => {
             <Input
               placeholder="상대방의 github 아이디를 입력해주세요"
               className="input"
+              onChange={(e) => {
+                setInitialValue({ ...initialValue, yourname: e.target.value });
+              }}
             />
           </div>
         </FadeInLeft>
 
         <FadeInUp isVisible={true}>
-          <Button className="btn-result">궁합결과</Button>
+          <Button
+            className="btn-result"
+            onClick={handleSubmit}
+            disabled={!initialValue?.myname || !initialValue?.yourname}
+            htmlType="submit"
+          >
+            {!!initialValue?.myname && !!initialValue?.yourname
+              ? '궁합결과'
+              : '두 명의 깃헙 아이디를 입력해주세요'}
+          </Button>
         </FadeInUp>
-      </div>
+      </form>
     </StyledWrapper>
   );
 };
@@ -188,6 +213,10 @@ const StyledWrapper = styled.div`
       border-radius: 100px;
       width: 100%;
       border: 0;
+
+      &:disabled {
+        background-color: #9a9a9a;
+      }
     }
   }
 `;
