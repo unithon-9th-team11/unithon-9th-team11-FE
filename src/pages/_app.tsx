@@ -1,3 +1,4 @@
+import 'antd/dist/antd.css';
 import AppLayout from '@RootLayouts/screen/AppLayout';
 import {
   Hydrate,
