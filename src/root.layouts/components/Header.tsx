@@ -6,6 +6,7 @@ import {
   logOutNavItems,
 } from '@RootLayouts/libs/constant/navItem';
 import Link from 'next/link';
+import { FaYinYang } from 'react-icons/fa';
 
 const Header = () => {
   // TODO 로그인 상태인지 확인해야 함
@@ -16,9 +17,9 @@ const Header = () => {
     <StyledWrapper>
       <h1 className="header-title">
         <div className="app-logo">
-          <BsGithub />
+          <FaYinYang />
+          <span className="logo-name">깃주팔자</span>
         </div>
-        깃주팔자
       </h1>
       <ul className="nav-wrapper">
         {navItems.map((item, index) => {
@@ -52,6 +53,12 @@ const StyledWrapper = styled.header`
       align-items: center;
       justify-content: center;
       margin-right: 14px;
+
+      .logo-name {
+        font-size: 20px;
+        font-weight: 700;
+        margin-left: 10px;
+      }
     }
 
     display: flex;
