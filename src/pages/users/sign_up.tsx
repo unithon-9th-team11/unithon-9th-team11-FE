@@ -3,6 +3,7 @@ import 'antd/dist/antd.css';
 import { Button, Input } from 'antd';
 import * as Yup from 'yup';
 import UsersLayout from '@RootComponents/UsersLayout';
+import Link from 'next/link';
 
 type SignUpValue = {
   userId: string;
@@ -95,9 +96,9 @@ const SignIn = () => {
       </Formik>
 
       <div className="link-wrapper">
-        <a href="/users/sign_in" className="link">
+        <Link href="/users/sign_in" className="link">
           로그인 페이지로 가기
-        </a>
+        </Link>
       </div>
     </UsersLayout>
   );
