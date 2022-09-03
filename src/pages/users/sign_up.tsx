@@ -96,8 +96,8 @@ const SignIn = () => {
       </Formik>
 
       <div className="link-wrapper">
-        <Link href="/users/sign_in" className="link">
-          로그인 페이지로 가기
+        <Link href="/users/sign_in">
+          <a className="link">로그인 페이지로 가기</a>
         </Link>
       </div>
     </UsersLayout>
