@@ -2,30 +2,90 @@ import { Button, Input } from 'antd';
 import { NextPage } from 'next';
 import { FaYinYang } from 'react-icons/fa';
 import styled from 'styled-components';
+import { animated, useSpring } from '@react-spring/web';
+
+const FadeIn = ({ isVisible, children }) => {
+  const styles = useSpring({
+    opacity: isVisible ? 1 : 0,
+    y: isVisible ? 0 : 50,
+    from: { opacity: 0, y: 50 },
+  });
+
+  return <animated.div style={styles}>{children}</animated.div>;
+};
+
+const FadeInRight = ({ isVisible, children }) => {
+  const styles = useSpring({
+    opacity: isVisible ? 1 : 0,
+    x: isVisible ? 0 : 50,
+    from: { opacity: 0, x: 50 },
+  });
+
+  return <animated.div style={styles}>{children}</animated.div>;
+};
+
+const FadeInLeft = ({ isVisible, children }) => {
+  const styles = useSpring({
+    opacity: isVisible ? 1 : 0,
+    x: isVisible ? 0 : -50,
+    from: { opacity: 0, x: -50 },
+  });
+
+  return <animated.div style={styles}>{children}</animated.div>;
+};
+
+const FadeInUp = ({ isVisible, children }) => {
+  const styles = useSpring({
+    opacity: isVisible ? 1 : 0,
+    y: isVisible ? 0 : -50,
+    from: { opacity: 0, y: -50 },
+  });
+
+  return <animated.div style={styles}>{children}</animated.div>;
+};
 
 const PageMain: NextPage = () => {
   return (
     <StyledWrapper>
-      <h1 className="main-title">
-        깃주
-        <div className="logo">
-          <FaYinYang />
+      <FadeIn isVisible={true}>
+        <h1 className="main-title">
+          깃주
+          <div className="logo">
+            <FaYinYang />
+          </div>
+          팔자
+        </h1>
+      </FadeIn>
+
+      <FadeInRight isVisible={true}>
+        <div className="sub-title">
+          서로의 <span className="sub-title-italic">github</span> 궁합이 좋은지
+          확인해보세요!
         </div>
-        팔자
-      </h1>
+      </FadeInRight>
 
       <div className="group-wrapper">
-        <div className="input-wrapper">
-          <label className="label">나와</label>
-          <Input placeholder="https://github.com/italsekf" className="input" />
-        </div>
+        <FadeInLeft isVisible={true}>
+          <div className="input-wrapper">
+            <label className="label">나와</label>
+            <Input
+              placeholder="https://github.com/italsekf"
+              className="input"
+            />
+          </div>
 
-        <div className="input-wrapper">
-          <label className="label">너의</label>
-          <Input placeholder="https://github.com/italsekf" className="input" />
-        </div>
+          <div className="input-wrapper">
+            <label className="label">너의</label>
+            <Input
+              placeholder="https://github.com/italsekf"
+              className="input"
+            />
+          </div>
+        </FadeInLeft>
 
-        <Button className="btn-result">궁합결과</Button>
+        <FadeInUp isVisible={true}>
+          <Button className="btn-result">궁합결과</Button>
+        </FadeInUp>
       </div>
     </StyledWrapper>
   );
@@ -57,8 +117,19 @@ const StyledWrapper = styled.div`
     }
   }
 
+  .sub-title {
+    font-size: 30px;
+    color: #818181;
+    margin-top: 25px;
+    font-weight: 600;
+
+    .sub-title-italic {
+      font-style: italic;
+    }
+  }
+
   .group-wrapper {
-    margin: 120px 0 100px 0;
+    margin: 90px 0 100px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
