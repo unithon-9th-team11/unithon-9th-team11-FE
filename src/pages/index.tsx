@@ -3,7 +3,8 @@ import { NextPage } from 'next';
 import { FaYinYang } from 'react-icons/fa';
 import styled from 'styled-components';
 import { animated, useSpring } from '@react-spring/web';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useHover } from '@RootHooks/useHover';
 
 const FadeIn = ({ isVisible, children }) => {
   const styles = useSpring({
@@ -35,15 +36,20 @@ const FadeInLeft = ({ isVisible, children }) => {
   return <animated.div style={styles}>{children}</animated.div>;
 };
 
-const FadeInUp = ({ isVisible, children }) => {
-  const styles = useSpring({
-    opacity: isVisible ? 1 : 0,
-    y: isVisible ? 0 : -50,
-    from: { opacity: 0, y: -50 },
+const RotateSpring = ({ isVisible, children }) => {
+  const style = useSpring({
+    display: 'inline-block',
+    backfaceVisibility: 'hidden',
+    transform: isVisible ? 'rotate(360deg)' : 'rotate(0deg)',
+    from: { transform: 'rotate(90deg)' },
+    config: {
+      tension: 300,
+      friction: 10,
+    },
   });
 
   return (
-    <animated.div style={styles} className="fadeup-style">
+    <animated.div style={style} className="fadeup-style">
       {children}
     </animated.div>
   );
@@ -55,9 +61,18 @@ const PageMain: NextPage = () => {
     yourname: '',
   });
 
+  const [isHoverOk, setIsHoverOk] = useState(false);
+
   const handleSubmit = () => {
     console.log(initialValue);
   };
+
+  const { value: isHover, ref: btnRef } = useHover();
+
+  useEffect(() => {
+    if (isHover) setIsHoverOk(true);
+    if (!initialValue?.myname || !initialValue?.yourname) setIsHoverOk(false);
+  }, [isHover, initialValue]);
 
   return (
     <StyledWrapper>
@@ -103,18 +118,19 @@ const PageMain: NextPage = () => {
           </div>
         </FadeInLeft>
 
-        <FadeInUp isVisible={true}>
+        <RotateSpring isVisible={isHoverOk}>
           <Button
             className="btn-result"
             onClick={handleSubmit}
             disabled={!initialValue?.myname || !initialValue?.yourname}
             htmlType="submit"
+            ref={btnRef}
           >
             {!!initialValue?.myname && !!initialValue?.yourname
               ? '궁합결과'
               : '두 명의 깃헙 아이디를 입력해주세요'}
           </Button>
-        </FadeInUp>
+        </RotateSpring>
       </form>
     </StyledWrapper>
   );
