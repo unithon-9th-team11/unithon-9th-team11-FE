@@ -33,17 +33,6 @@ const SignIn = () => {
         }}
         validationSchema={validationSchema}
         onSubmit={(values: SignUpValue) => {
-<<<<<<< Updated upstream
-          console.log(values.userId);
-          console.log(values.userPw);
-          console.log(values.userPwConfirm);
-
-          postSignUp({ userId: values.userId, userPw: values.userPw }).then(
-            (response) => {
-              message.info('회원기능은 곧 오픈될 기능입니다.', 0.5);
-            }
-          );
-=======
           postSignUp({ userId: values.userId, userPw: values.userPw })
             .then(() => {
               Swal.fire({
@@ -62,7 +51,6 @@ const SignIn = () => {
                 confirmButtonText: '확인',
               });
             });
->>>>>>> Stashed changes
         }}
       >
         <Form>
