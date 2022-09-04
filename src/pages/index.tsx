@@ -5,6 +5,9 @@ import styled from 'styled-components';
 import { animated, useSpring } from '@react-spring/web';
 import { useState, useEffect } from 'react';
 import { useHover } from '@RootHooks/useHover';
+import { useMutation } from '@tanstack/react-query';
+import { postChemy } from './root.api/api';
+import { useRouter } from 'next/router';
 
 const FadeIn = ({ isVisible, children }) => {
   const styles = useSpring({
@@ -55,16 +58,35 @@ const RotateSpring = ({ isVisible, children }) => {
   );
 };
 
+/// COMPONENT
+
 const PageMain: NextPage = () => {
   const [initialValue, setInitialValue] = useState({
     myname: '',
     yourname: '',
   });
+  const router = useRouter();
+
+  const mutation = useMutation(postChemy, {
+    onSuccess(data) {
+      // {createdChemyIdx: 6}
+      router.push(`/loading?id=${data.createdChemyIdx}`);
+    },
+    onError(error) {
+      console.log(error);
+    },
+  });
 
   const [isHoverOk, setIsHoverOk] = useState(false);
 
   const handleSubmit = () => {
-    console.log(initialValue);
+    mutation.mutate({
+      firstGithubId: initialValue.myname,
+      secondGithubId: initialValue.yourname,
+    });
+
+    // router.push(`/result/${initialValue.myname}&${initialValue.yourname}`);
+    // console.log(initialValue);
   };
 
   const { value: isHover, ref: btnRef } = useHover();
@@ -122,7 +144,12 @@ const PageMain: NextPage = () => {
           <Button
             className="btn-result"
             onClick={handleSubmit}
-            disabled={!initialValue?.myname || !initialValue?.yourname}
+            disabled={
+              !initialValue?.myname ||
+              !initialValue?.yourname ||
+              mutation.isLoading
+            }
+            loading={mutation.isLoading}
             htmlType="submit"
             ref={btnRef}
           >
