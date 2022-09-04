@@ -45,3 +45,9 @@ const MyApp = ({ Component, pageProps }: AppProps<{}>) => {
 };
 
 export default MyApp;
+
+MyApp.getInitialProps = async ({ Component, ctx }) => {
+  return {
+    pageProps: {},
+  };
+};
