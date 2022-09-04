@@ -16,7 +16,7 @@ export type PersonalData = {
   totalOrganization: number;
 };
 
-type Response = {
+export type Response = {
   chemyScore: number;
   firstPersonalData: PersonalData;
   secondPersonalData: PersonalData;
@@ -94,7 +94,7 @@ const ResultPage = () => {
       <div className="result-cards-wrapper">
         <UserResultCard data={data?.firstPersonalData!} />
         <div className="report-card">
-          <UserResultText score={score} />
+          <UserResultText score={score} data={data!} />
         </div>
         <UserResultCard data={data?.secondPersonalData!} />
       </div>
