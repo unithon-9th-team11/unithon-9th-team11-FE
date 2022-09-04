@@ -5,7 +5,8 @@ export type navItemType = {
 
 // TODO 개선
 export const logOutNavItems: navItemType[] = [
-  { title: '궁합보기', path: '/result/asd' },
+  // { title: '궁합보기', path: '/result/asd' },
+  { title: '마이랭킹', path: '/ranking' },
   { title: '로그인', path: '/users/sign_in' },
   { title: '회원가입', path: '/users/sign_up' },
 ];

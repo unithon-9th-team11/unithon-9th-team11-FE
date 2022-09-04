@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { FaYinYang } from 'react-icons/fa';
 
 const Header = () => {
-  const isLoggedIn = true;
+  const isLoggedIn = false;
   const navItems = isLoggedIn ? loginNavItems : logOutNavItems;
 
   return (

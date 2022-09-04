@@ -1,23 +1,36 @@
+import { getRandomInt, PersonalData } from 'pages/result/[id]';
 import React from 'react';
 import styled from 'styled-components';
 import ResultInfoTag from './ResultInfoTag';
 
 type Props = {
-  nickname: string;
+  data: PersonalData;
 };
-const UserResultCard = ({ nickname }: Props) => {
+
+const UserResultCard = ({ data }: Props) => {
   return (
     <StyledWrapper>
-      <img
-        className="profile-img"
-        src={`https://github.com/${nickname}.png`}
-        width={150}
-        height={150}
+      <a
+        href={`https://github.com/${data?.githubId}`}
+        target="_blank"
+        className="profile-wrapper"
+        rel="noreferrer"
+      >
+        <img
+          // onError={"/image/octocat.png"}
+          className="profile-img"
+          src={`https://github.com/${data?.githubId}.png`}
+          width={150}
+          height={150}
+        />
+        <span className="user-name">@{data?.githubId ?? ''}</span>
+      </a>
+      <ResultInfoTag labelText="🌟 스타 수" amount={data?.totalStar ?? ''} />
+      <ResultInfoTag labelText="✍🏻 커밋 수" amount={data?.totalCommit ?? ''} />
+      <ResultInfoTag
+        labelText="👩‍👩‍👧‍👦 조직 수"
+        amount={data?.totalOrganization ?? ''}
       />
-      <span className="user-name">@{nickname}</span>
-      <ResultInfoTag labelText="🌟 스타 수" amount={23} />
-      <ResultInfoTag labelText="✍🏻 커밋 수" amount={99} />
-      <ResultInfoTag labelText="👩‍👩‍👧‍👦 조직 수" amount={2422} />
     </StyledWrapper>
   );
 };
@@ -31,6 +44,12 @@ const StyledWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
+  .profile-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
   .profile-img {
     border-radius: 50%;
     border: 4px solid transparent;
