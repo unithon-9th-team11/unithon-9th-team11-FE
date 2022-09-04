@@ -22,7 +22,7 @@ const Loading = () => {
       if (!(imgWidth < 0)) {
         setImgWidth((imgWidth) => imgWidth - 1);
       } else {
-        location.href = '/';
+        setImgWidth(600);
       }
     }, 25);
     return () => {
