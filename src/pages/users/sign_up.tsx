@@ -1,6 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import 'antd/dist/antd.css';
-import { Button, Input } from 'antd';
+import { Button, Input, message } from 'antd';
 import * as Yup from 'yup';
 import UsersLayout from '@RootComponents/UsersLayout';
 import Link from 'next/link';
@@ -38,7 +38,7 @@ const SignIn = () => {
 
           postSignUp({ userId: values.userId, userPw: values.userPw }).then(
             (response) => {
-              console.log(response);
+              message.info('회원기능은 곧 오픈될 기능입니다.', 0.5);
             }
           );
         }}
