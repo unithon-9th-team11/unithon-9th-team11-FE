@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import UsersLayout from '@RootComponents/UsersLayout';
 import Link from 'next/link';
 import { postSignUp } from 'pages/root.api/api';
+import Swal from 'sweetalert2';
 
 type SignUpValue = {
   userId: string;
@@ -32,6 +33,7 @@ const SignIn = () => {
         }}
         validationSchema={validationSchema}
         onSubmit={(values: SignUpValue) => {
+<<<<<<< Updated upstream
           console.log(values.userId);
           console.log(values.userPw);
           console.log(values.userPwConfirm);
@@ -41,6 +43,26 @@ const SignIn = () => {
               message.info('회원기능은 곧 오픈될 기능입니다.', 0.5);
             }
           );
+=======
+          postSignUp({ userId: values.userId, userPw: values.userPw })
+            .then(() => {
+              Swal.fire({
+                icon: 'success',
+                title: '회원가입 성공!',
+                text: '로그인 페이지로 이동합니다.',
+                confirmButtonText: '확인',
+              }).then(() => {
+                window.location.href = '/users/sign_in';
+              });
+            })
+            .catch(() => {
+              Swal.fire({
+                icon: 'error',
+                title: '오류발생 :(',
+                confirmButtonText: '확인',
+              });
+            });
+>>>>>>> Stashed changes
         }}
       >
         <Form>
